@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'pages/home_page..dart';
+
 void main() {
   runApp(MaterialApp(
     home: Home(),
-      theme: ThemeData(primaryColor: Colors.blueAccent, hintColor: Colors.white)
+    theme: ThemeData(primaryColor: Colors.blueAccent, hintColor: Colors.white)
   ));
 }
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

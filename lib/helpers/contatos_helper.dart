@@ -29,7 +29,7 @@ class ContatosHelper {
   Future<Database> initDb() async {
     final databasesPath = await getDatabasesPath();
     // Monta o nome do arquivo do banco de dados
-    final path = join(databasesPath, 'contados.db');
+    final path = join(databasesPath, 'contatos.db');
     return openDatabase(path, version: 1, onCreate: (Database db, int newerVersion) async {
       await db.execute(
         "CREATE TABLE $contatosTable($idColumn INTEGER PRIMARY KEY, $nomeColumn TEXT, $emailColumn TEXT, $telefoneColumn TEXT, $fotoColumn TEXT)"
@@ -42,7 +42,7 @@ class ContatosHelper {
     dbContato.close();
   }
 
-  Future<List> getAllContato(int id) async {
+  Future<List> getAllContato() async {
     Database dbContato = await db;
     List<Map> maps = await dbContato.rawQuery("SELECT * FROM $contatosTable");
     List<Contato> listaContatos = List();
@@ -98,6 +98,8 @@ class Contato {
   String email;
   String telefone;
   String foto;
+
+  Contato();
 
   // Retorna os valores do Map
   // Construtor que recepe um map para que quando for armazenado os dados nos iremos armazena-los em formato de Map. E obter os dados os dados precisamos recupear este Map de volta (recebeo os dados do meu contato em um map e coloco os dados em seus campos)
