@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../helpers/contatos_helper.dart';
@@ -52,9 +54,60 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.all(10.0),
           itemCount: contatos.length,
           itemBuilder: (context, index) {
-            
+            return _montaContatoCard(context, index);
           }
       )
     );
   }
+
+
+
+  Widget _montaContatoCard(BuildContext context, int index) {
+    return GestureDetector(
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 80.0,
+                height: 80.0,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: contatos[index].foto != null ? FileImage(File(contatos[index].foto)) : AssetImage("assets/person.png")
+                    )
+                ),
+              ),
+
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(contatos[index].nome ?? "",
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                    Text(contatos[index].email ?? "",
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                    Text(contatos[index].telefone ?? "",
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ],
+                ),
+              )
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
 }
+
+
